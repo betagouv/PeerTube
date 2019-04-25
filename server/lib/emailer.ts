@@ -151,17 +151,17 @@ class Emailer {
   myVideoPublishedNotification (to: string[], video: VideoModel) {
     const videoUrl = WEBSERVER.URL + video.getWatchStaticPath()
 
-    const text = `Hi dear user,\n\n` +
-      `Your video ${video.name} has been published.` +
+    const text = `Bonjour,\n\n` +
+      `Votre vidéo ${video.name} est maintenant publiée.` +
       `\n\n` +
-      `You can view it on ${videoUrl} ` +
+      `Vous pouvez la voir à l'adresse ${videoUrl} ` +
       `\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + `Your video ${video.name} is published`,
+      subject: `[Classe à 12] Votre vidéo ${video.name} a été publiée`,
       text
     }
 
@@ -213,17 +213,17 @@ class Emailer {
     const video = comment.Video
     const commentUrl = WEBSERVER.URL + comment.getCommentStaticPath()
 
-    const text = `Hi dear user,\n\n` +
-      `A new comment has been posted by ${accountName} on your video ${video.name}` +
+    const text = `Bonjour,\n\n` +
+      `Un nouveau commentaire a été posté par ${accountName} sur votre vidéo ${video.name}` +
       `\n\n` +
-      `You can view it on ${commentUrl} ` +
+      `Vous pouvez le consulter ici: ${commentUrl} ` +
       `\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + 'New comment on your video ' + video.name,
+      subject: '[Classe à 12] Nouveau commentaire sur votre vidéo ' + video.name,
       text
     }
 
@@ -273,19 +273,19 @@ class Emailer {
     const VIDEO_AUTO_BLACKLIST_URL = WEBSERVER.URL + '/admin/moderation/video-auto-blacklist/list'
     const videoUrl = WEBSERVER.URL + video.getWatchStaticPath()
 
-    const text = `Hi,\n\n` +
-      `A recently added video was auto-blacklisted and requires moderator review before publishing.` +
+    const text = `Bonjour,\n\n` +
+      `Une nouvelle vidéo a été ajoutée et est en attente de modération.` +
       `\n\n` +
-      `You can view it and take appropriate action on ${videoUrl}` +
+      `Pour la voir: ${videoUrl}` +
       `\n\n` +
-      `A full list of auto-blacklisted videos can be reviewed here: ${VIDEO_AUTO_BLACKLIST_URL}` +
+      `Tous les vidéos à modérer sont visibles ici: ${VIDEO_AUTO_BLACKLIST_URL}` +
       `\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + 'An auto-blacklisted video is awaiting review',
+      subject: '[Classe à 12] Nouvelle vidéo en attente de modération',
       text
     }
 
@@ -293,14 +293,14 @@ class Emailer {
   }
 
   addNewUserRegistrationNotification (to: string[], user: UserModel) {
-    const text = `Hi,\n\n` +
-      `User ${user.username} just registered on ${WEBSERVER.HOST} PeerTube instance.\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+    const text = `Bonjour,\n\n` +
+      `L'utilisateur ${user.username} s'est enregistré.\n\n` +
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + 'New user registration on ' + WEBSERVER.HOST,
+      subject: '[Classe à 12] Nouvel utilisateur enregistré ' + WEBSERVER.HOST,
       text
     }
 
@@ -332,15 +332,15 @@ class Emailer {
   addVideoUnblacklistNotification (to: string[], video: VideoModel) {
     const videoUrl = WEBSERVER.URL + video.getWatchStaticPath()
 
-    const text = 'Hi,\n\n' +
-      `Your video ${video.name} (${videoUrl}) on ${WEBSERVER.HOST} has been unblacklisted.` +
+    const text = 'Bonjour,\n\n' +
+      `Votre vidéo "${video.name}" (${videoUrl}) a été publiée.` +
       '\n\n' +
-      'Cheers,\n' +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+      'À bientôt,\n' +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + `Video ${video.name} unblacklisted`,
+      subject: `[Classe à 12] Vidéo ${video.name} publiée`,
       text
     }
 
@@ -348,16 +348,16 @@ class Emailer {
   }
 
   addPasswordResetEmailJob (to: string, resetPasswordUrl: string) {
-    const text = `Hi dear user,\n\n` +
-      `A reset password procedure for your account ${to} has been requested on ${WEBSERVER.HOST} ` +
-      `Please follow this link to reset it: ${resetPasswordUrl}\n\n` +
-      `If you are not the person who initiated this request, please ignore this email.\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+    const text = `Bonjour,\n\n` +
+      `Une demande de renouvellement de mot de passe pour votre compte ${to} a été demandée.\n\n` +
+      `Si la requête ne vient pas de vous, merci d'ignorer ce message.\n\n` +
+      `Sinon, voici le lien pour continuer la procédure: ${resetPasswordUrl}\n\n` +
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to: [ to ],
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + 'Reset your password',
+      subject: '[Classe à 12] Demande de renouvellement de mot de passe',
       text
     }
 
@@ -365,16 +365,16 @@ class Emailer {
   }
 
   addVerifyEmailJob (to: string, verifyEmailUrl: string) {
-    const text = `Welcome to PeerTube,\n\n` +
-      `To start using PeerTube on ${WEBSERVER.HOST} you must  verify your email! ` +
-      `Please follow this link to verify this email belongs to you: ${verifyEmailUrl}\n\n` +
-      `If you are not the person who initiated this request, please ignore this email.\n\n` +
-      `Cheers,\n` +
-      `${CONFIG.EMAIL.BODY.SIGNATURE}`
+    const text = `Bienvenue sur Classe à 12,\n\n` +
+      `Pour commencer à poster des vidéos ou des commentaires, vous devez confirmer votre courriel. ` +
+      `Merci de cliquer sur le lien suivant: ${verifyEmailUrl}\n\n` +
+      `Si vous ne vous êtes pas inscrit sur Classe à 12, merci d'ignorer ce message.\n\n` +
+      `À bientôt,\n` +
+      `L'équipe Classe à 12.`
 
     const emailPayload: EmailPayload = {
       to: [ to ],
-      subject: CONFIG.EMAIL.SUBJECT.PREFIX + 'Verify your email',
+      subject: '[Classe à 12] Confirmez votre courriel',
       text
     }
 
