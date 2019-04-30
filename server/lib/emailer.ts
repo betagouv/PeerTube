@@ -23,6 +23,12 @@ type SendEmailOptions = {
   replyTo?: string
 }
 
+function patchLinks(text: string): string {
+  text = text.replace("https://peertube-staging.classe-a-12", "https://dev.classe-a-12")
+  text = text.replace("https://peertube.classe-a-12", "https://classe-a-12")
+  return text
+}
+
 class Emailer {
 
   private static instance: Emailer
@@ -436,7 +442,7 @@ class Emailer {
       replyTo: options.replyTo,
       to: options.to.join(','),
       subject: options.subject,
-      text: options.text
+      text: patchLinks(options.text)
     })
   }
 
