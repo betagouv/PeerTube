@@ -353,14 +353,14 @@ export class VideoCommentModel extends Model<VideoCommentModel> {
       })
   }
 
-  static async listVideoCommentsFeedForApi(start: number, count: number, order: 'ASC' | 'DESC' = 'ASC') {
+  static async listVideoCommentsFeedForApi (start: number, count: number, order: 'ASC' | 'DESC' = 'ASC') {
     const serverActor = await getServerActor()
     const serverAccountId = serverActor.Account.id
 
     const query = {
       order: [ ['createdAt', order] ] as Order,
       offset: start,
-      limit: count,
+      limit: count
     }
 
     console.debug('>>>query', query)

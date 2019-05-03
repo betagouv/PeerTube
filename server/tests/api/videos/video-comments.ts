@@ -17,6 +17,7 @@ import {
   addVideoCommentThread,
   deleteVideoComment,
   getVideoCommentThreads,
+  getVideoCommentsFeed,
   getVideoThreadComments
 } from '../../../../shared/extra-utils/videos/video-comments'
 
@@ -152,6 +153,21 @@ describe('Test video comments', function () {
 
   it('Should list the threads', async function () {
     const res = await getVideoCommentThreads(server.url, videoUUID, 0, 5, 'createdAt')
+
+    expect(res.body.total).to.equal(3)
+    expect(res.body.data).to.be.an('array')
+    expect(res.body.data).to.have.lengthOf(3)
+
+    expect(res.body.data[0].text).to.equal('my super first comment')
+    expect(res.body.data[0].totalReplies).to.equal(3)
+    expect(res.body.data[1].text).to.equal('super thread 2')
+    expect(res.body.data[1].totalReplies).to.equal(0)
+    expect(res.body.data[2].text).to.equal('super thread 3')
+    expect(res.body.data[2].totalReplies).to.equal(0)
+  })
+
+  it.only('Should list all the comments', async function () {
+    const res = await getVideoCommentsFeed(server.url)
 
     expect(res.body.total).to.equal(3)
     expect(res.body.data).to.be.an('array')
