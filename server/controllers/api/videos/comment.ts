@@ -30,6 +30,12 @@ import { Notifier } from '../../../lib/notifier'
 const auditLogger = auditLoggerFactory('comments')
 const videoCommentRouter = express.Router()
 
+videoCommentRouter.get('/comments-feed',
+  paginationValidator,
+  optionalAuthenticate,
+  asyncMiddleware(ListVideoCommentsFeed)
+)
+
 videoCommentRouter.get('/:videoId/comment-threads',
   paginationValidator,
   videoCommentThreadsSortValidator,
@@ -103,6 +109,15 @@ async function listVideoThreadComments (req: express.Request, res: express.Respo
   }
 
   return res.json(buildFormattedCommentTree(resultList))
+}
+
+async function ListVideoCommentsFeed (req: express.Request, res: express.Response) {
+  const user = res.locals.oauth ? res.locals.oauth.token.User : undefined
+
+  let resultList: ResultList<VideoCommentModel>
+  resultList = await VideoCommentModel.listVideoCommentsFeedForApi(req.query.start, req.query.count, req.query.sort)
+
+  return res.json(resultList)
 }
 
 async function addVideoCommentThread (req: express.Request, res: express.Response) {
