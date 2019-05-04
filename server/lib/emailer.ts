@@ -23,9 +23,9 @@ type SendEmailOptions = {
   replyTo?: string
 }
 
-function patchLinks(text: string): string {
-  text = text.replace("https://peertube-staging.classe-a-12", "https://dev.classe-a-12")
-  text = text.replace("https://peertube.classe-a-12", "https://classe-a-12")
+function patchLinks (text: string): string {
+  text = text.replace('https://peertube-staging.classe-a-12', 'https://dev.classe-a-12')
+  text = text.replace('https://peertube.classe-a-12', 'https://classe-a-12')
   return text
 }
 
