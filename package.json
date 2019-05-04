@@ -156,6 +156,7 @@
     "webtorrent": "^0.103.0",
     "winston": "3.2.1",
     "ws": "^6.0.0",
+    "yarn": "^1.15.2",
     "youtube-dl": "^1.12.2"
   },
   "devDependencies": {

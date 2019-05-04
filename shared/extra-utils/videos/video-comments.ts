@@ -30,6 +30,19 @@ function getVideoThreadComments (url: string, videoId: number | string, threadId
             .expect('Content-Type', /json/)
 }
 
+function getVideoCommentsFeed (url: string, token?: string) {
+  const path = '/api/v1/videos/comments-feed/'
+
+  const req = request(url)
+    .get(path)
+    .set('Accept', 'application/json')
+
+  if (token) req.set('Authorization', 'Bearer ' + token)
+
+  return req.expect(200)
+            .expect('Content-Type', /json/)
+}
+
 function addVideoCommentThread (url: string, token: string, videoId: number | string, text: string, expectedStatus = 200) {
   const path = '/api/v1/videos/' + videoId + '/comment-threads'
 
@@ -81,6 +94,7 @@ function deleteVideoComment (
 export {
   getVideoCommentThreads,
   getVideoThreadComments,
+  getVideoCommentsFeed,
   addVideoCommentThread,
   addVideoCommentReply,
   deleteVideoComment

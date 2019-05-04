@@ -1373,6 +1373,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/VideoRating'
+  '/videos/comments-feed':
+    get:
+      summary: Get the comment feed of all videos
+      tags:
+        - Video Comment
+      parameters:
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/sort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentsFeedResponse'
   '/videos/{id}/comment-threads':
     get:
       summary: Get the comment threads of a video by its id
@@ -2084,6 +2100,14 @@ components:
               type: number
             uuid:
               type: string
+    CommentsFeedResponse:
+      properties:
+        total:
+          type: number
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VideoComment'
     CommentThreadResponse:
       properties:
         total:
@@ -2212,4 +2236,3 @@ components:
           type: string
         description:
           type: string
-

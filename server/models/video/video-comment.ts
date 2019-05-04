@@ -364,6 +364,32 @@ export class VideoCommentModel extends Model<VideoCommentModel> {
       })
   }
 
+  static async listVideoCommentsFeedForApi (start: number, count: number, order: 'ASC' | 'DESC' = 'ASC') {
+    const serverActor = await getServerActor()
+    const serverAccountId = serverActor.Account.id
+
+    const query = {
+      order: [ ['createdAt', order] ] as Order,
+      offset: start,
+      limit: count
+    }
+
+    console.debug('>>>query', query)
+    const scopes: any[] = [
+      ScopeNames.WITH_ACCOUNT,
+      {
+        method: [ ScopeNames.ATTRIBUTES_FOR_API, serverAccountId ]
+      }
+    ]
+
+    return VideoCommentModel
+      .scope(scopes)
+      .findAndCountAll(query)
+      .then(({ rows, count }) => {
+        return { total: count, data: rows }
+      })
+  }
+
   static listThreadParentComments (comment: VideoCommentModel, t: Transaction, order: 'ASC' | 'DESC' = 'ASC') {
     const query = {
       order: [ [ 'createdAt', order ] ] as Order,
