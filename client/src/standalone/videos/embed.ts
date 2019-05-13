@@ -237,14 +237,8 @@ export class PeerTubeEmbed {
     if (this.controls) {
       const title = this.title ? videoInfo.name : undefined
 
-      const config: ServerConfig = await configResponse.json()
-      const description = config.tracker.enabled && this.warningTitle
-        ? '<span class="text">' + this.player.localize('Uses P2P, others may know your IP is downloading this video.') + '</span>'
-        : undefined
-
       this.player.dock({
-        title,
-        description
+        title: videoInfo.name,
       })
     }
   }
