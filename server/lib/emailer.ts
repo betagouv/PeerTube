@@ -24,8 +24,7 @@ type SendEmailOptions = {
 }
 
 function patchLinks(text: string): string {
-  text = text.replace("https://peertube-staging.classe-a-12", "https://dev.classe-a-12")
-  text = text.replace("https://peertube.classe-a-12", "https://classe-a-12")
+  text = text.replace("https://peertube.devoirs-faits", "https://devoirs-faits")
   return text
 }
 
@@ -163,11 +162,11 @@ class Emailer {
       `Vous pouvez la voir à l'adresse ${videoUrl} ` +
       `\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: `[Classe à 12] Votre vidéo ${video.name} a été publiée`,
+      subject: `[Devoirs Faits] Votre vidéo ${video.name} a été publiée`,
       text
     }
 
@@ -225,11 +224,11 @@ class Emailer {
       `Vous pouvez le consulter ici: ${commentUrl} ` +
       `\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: '[Classe à 12] Nouveau commentaire sur votre vidéo ' + video.name,
+      subject: '[Devoirs Faits] Nouveau commentaire sur votre vidéo ' + video.name,
       text
     }
 
@@ -287,11 +286,11 @@ class Emailer {
       `Tous les vidéos à modérer sont visibles ici: ${VIDEO_AUTO_BLACKLIST_URL}` +
       `\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: '[Classe à 12] Nouvelle vidéo en attente de modération',
+      subject: '[Devoirs Faits] Nouvelle vidéo en attente de modération',
       text
     }
 
@@ -302,11 +301,11 @@ class Emailer {
     const text = `Bonjour,\n\n` +
       `L'utilisateur ${user.username} s'est enregistré.\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: '[Classe à 12] Nouvel utilisateur enregistré ' + WEBSERVER.HOST,
+      subject: '[Devoirs Faits] Nouvel utilisateur enregistré ' + WEBSERVER.HOST,
       text
     }
 
@@ -342,11 +341,11 @@ class Emailer {
       `Votre vidéo "${video.name}" (${videoUrl}) a été publiée.` +
       '\n\n' +
       'À bientôt,\n' +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to,
-      subject: `[Classe à 12] Vidéo ${video.name} publiée`,
+      subject: `[Devoirs Faits] Vidéo ${video.name} publiée`,
       text
     }
 
@@ -359,11 +358,11 @@ class Emailer {
       `Si la requête ne vient pas de vous, merci d'ignorer ce message.\n\n` +
       `Sinon, voici le lien pour continuer la procédure: ${resetPasswordUrl}\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to: [ to ],
-      subject: '[Classe à 12] Demande de renouvellement de mot de passe',
+      subject: '[Devoirs Faits] Demande de renouvellement de mot de passe',
       text
     }
 
@@ -371,16 +370,16 @@ class Emailer {
   }
 
   addVerifyEmailJob (to: string, verifyEmailUrl: string) {
-    const text = `Bienvenue sur Classe à 12,\n\n` +
+    const text = `Bienvenue sur Devoirs Faits,\n\n` +
       `Pour commencer à poster des vidéos ou des commentaires, vous devez confirmer votre courriel. ` +
       `Merci de cliquer sur le lien suivant: ${verifyEmailUrl}\n\n` +
-      `Si vous ne vous êtes pas inscrit sur Classe à 12, merci d'ignorer ce message.\n\n` +
+      `Si vous ne vous êtes pas inscrit sur Devoirs Faits, merci d'ignorer ce message.\n\n` +
       `À bientôt,\n` +
-      `L'équipe Classe à 12.`
+      `L'équipe Devoirs Faits.`
 
     const emailPayload: EmailPayload = {
       to: [ to ],
-      subject: '[Classe à 12] Confirmez votre courriel',
+      subject: '[Devoirs Faits] Confirmez votre courriel',
       text
     }
 
